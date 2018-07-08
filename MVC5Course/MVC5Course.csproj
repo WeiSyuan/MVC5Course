@@ -153,6 +153,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,6 +165,7 @@
     <Compile Include="Models\Client.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientsViewModel.cs" />
     <Compile Include="Models\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,6 +186,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Fabrics.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\InputValidations\身分證字號.cs" />
     <Compile Include="Models\Occupation.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
@@ -280,9 +283,15 @@
     <Content Include="Views\Products\AddNewProduct.cshtml" />
     <Content Include="Views\Products\Edit_Product.cshtml" />
     <Content Include="Views\Products\Delete_Product.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ClientViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
