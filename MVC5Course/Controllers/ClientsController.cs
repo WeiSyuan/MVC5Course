@@ -11,10 +11,18 @@ using Omu.ValueInjecter;
 
 namespace MVC5Course.Controllers
 {
-    public class ClientsController : Controller
+    [RoutePrefix("clients")]
+    public class ClientsController : BaseController
     {
-        ClientRepository repo = RepositoryHelper.GetClientRepository();
+        ClientRepository repo;
+        OccupationRepository occuRepo;
 
+        public ClientsController()
+        {
+            repo = RepositoryHelper.GetClientRepository();
+            occuRepo = RepositoryHelper.GetOccupationRepository(repo.UnitOfWork);
+        }
+        [Route("Search")]
         [HttpPost]
         public ActionResult Search(string keyword)
         {
@@ -48,7 +56,7 @@ namespace MVC5Course.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
-            var occuRepo = RepositoryHelper.GetOccupationRepository();
+
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName");
             return View();
         }
@@ -66,7 +74,7 @@ namespace MVC5Course.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            var occuRepo = RepositoryHelper.GetOccupationRepository();
+
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
@@ -86,7 +94,7 @@ namespace MVC5Course.Controllers
             {
                 return HttpNotFound();
             }
-            var occuRepo = RepositoryHelper.GetOccupationRepository();
+
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(View_Client);
         }
@@ -105,7 +113,7 @@ namespace MVC5Course.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            var occuRepo = RepositoryHelper.GetOccupationRepository();
+
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
@@ -132,6 +140,7 @@ namespace MVC5Course.Controllers
         {
             Client client = repo.Find(id);
             repo.Delete(client);
+            repo.UnitOfWork.Context.Configuration.ValidateOnSaveEnabled = false; //取消輸入驗證與模型驗證
             repo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");

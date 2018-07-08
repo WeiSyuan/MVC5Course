@@ -81,6 +81,7 @@ namespace MVC5Course.Models
         [StringLength(10, ErrorMessage = "欄位長度不得大於 10 個字元")]
         public string Idnumber { get; set; }
 
+        public Nullable<bool> IsDelete { get; set; }
 
         public virtual Occupation Occupation { get; set; }
         public virtual ICollection<Order> Order { get; set; }
