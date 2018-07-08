@@ -13,9 +13,31 @@ namespace MVC5Course.Controllers
         {
             return View();
         }
-        public ActionResult View()
+        public ActionResult TestView()
         {
-            return View();
+            string test = "test123";
+            return View((object)test);
         }
+
+        public ActionResult PartialTestView()
+        {
+            string test = "test123";
+            return PartialView("TestView",(object)test);
+        }
+
+
+        public ActionResult FileView(string dl)
+        {
+            if (String.IsNullOrEmpty(dl))
+            {
+                return File(Server.MapPath("~/App_Data/maxresdefault.jpg"), "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/maxresdefault.jpg"), "image/jpeg","Moba.jpg");
+            }
+        }
+
+
     }
 }
