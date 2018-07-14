@@ -7,8 +7,18 @@ namespace MVC5Course.Models
 
     //模型驗證範例
     [MetadataType(typeof(ClientMetaData))]
+    public partial class Client
+    {
+        partial void Init()
+        {
+            this.City = "台北市";
+        }
+    }
+
+    
     public partial class Client : IValidatableObject
     {
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
            
@@ -28,6 +38,7 @@ namespace MVC5Course.Models
 
     public partial class ClientMetaData
     {
+        
         [Required]
         public int ClientId { get; set; }
 

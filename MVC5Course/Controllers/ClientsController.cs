@@ -108,6 +108,7 @@ namespace MVC5Course.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var db = repo.UnitOfWork.Context;
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
