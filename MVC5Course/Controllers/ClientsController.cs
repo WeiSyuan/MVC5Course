@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using Omu.ValueInjecter;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -32,6 +33,7 @@ namespace MVC5Course.Controllers
 
         [HttpPost]
         [Route("BatchUpdate")]
+        [HandleError(ExceptionType =typeof(DbEntityValidationException),View = "Error_DbEntityValidationException")]
         public ActionResult BatchUpdate(IList<ClientBatchViewModel> data,string keyword)
         {
             if (ModelState.IsValid)
@@ -42,11 +44,12 @@ namespace MVC5Course.Controllers
                     client.FirstName = item.FirstName;
                     client.MiddleName = item.MiddleName;
                     client.LastName = item.LastName;
+                    client.DateOfBirth = item.DateOfBirth;
                 }
 
                 repo.UnitOfWork.Commit();
                 TempData["message"] = "修改成功";
-                if (keyword==null)
+                if (String.IsNullOrEmpty(keyword))
                 {
                     return RedirectToAction("Index");
                 }
@@ -141,26 +144,49 @@ namespace MVC5Course.Controllers
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes,Idnumber,IsDelete")] Client client)
+        public ActionResult Edit(int id,FormCollection form)
         {
-            if (ModelState.IsValid)
+            var client = repo.Find(id);
+            if (TryUpdateModel(client,null,null,new string[] { "FirstName"}))
             {
-
-                var db = repo.UnitOfWork.Context;
-                db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
+                //var db = repo.UnitOfWork.Context;
+                //db.Entry(client).State = EntityState.Modified;
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             //ModelState.Remove("Latitude");
 
             Client C = repo.Find(client.ClientId);
-            
+
 
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(C);
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes,Idnumber,IsDelete")] Client client)
+        //{
+        //    #region 寫得很爛，這樣會造成不可被編輯的欄位也被更新了
+        //    if (ModelState.IsValid)
+        //    {
+        //        var db = repo.UnitOfWork.Context;
+        //        db.Entry(client).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    #endregion
+        //    //ModelState.Remove("Latitude");
+
+        //    Client C = repo.Find(client.ClientId);
+
+
+        //    ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
+        //    return View(C);
+        //}
 
         // GET: Clients/Delete/5
         public ActionResult Delete(int? id)

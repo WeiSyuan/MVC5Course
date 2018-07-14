@@ -97,7 +97,8 @@
                     @Html.DisplayFor(modelItem => data[i].Gender)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => data[i].DateOfBirth)
+                    @Html.EditorFor(modelItem => data[i].DateOfBirth)
+                    @Html.ValidationMessageFor(model => data[i].DateOfBirth, "", new { @class = "text-danger" })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => data[i].CreditRating)
