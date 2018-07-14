@@ -30,6 +30,40 @@ namespace MVC5Course.Controllers
             return View("Index", client);
         }
 
+        [HttpPost]
+        [Route("BatchUpdate")]
+        public ActionResult BatchUpdate(IList<ClientBatchViewModel> data,string keyword)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var item in data)
+                {
+                    var client = repo.Find(item.ClientId);
+                    client.FirstName = item.FirstName;
+                    client.MiddleName = item.MiddleName;
+                    client.LastName = item.LastName;
+                }
+
+                repo.UnitOfWork.Commit();
+                TempData["message"] = "修改成功";
+                if (keyword==null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewData.Model = repo.Search(keyword);
+                    return View("Index");
+                }
+
+            }
+
+            //ViewData.Model = repo.All().OrderByDescending(p => p.ClientId).Take(10);
+            ViewData.Model = repo.Search(keyword);
+
+            return View("Index");
+        }
+
 
         // GET: Clients
         public ActionResult Index()
@@ -37,6 +71,9 @@ namespace MVC5Course.Controllers
             var data = repo.All();
             return View(data.OrderByDescending(p => p.ClientId).Take(10));
         }
+
+
+
 
         // GET: Clients/Details/5
         public ActionResult Details(int? id)
