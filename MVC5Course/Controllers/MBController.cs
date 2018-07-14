@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
@@ -23,7 +24,7 @@ namespace MVC5Course.Controllers
         }
         public ActionResult ViewDataDemo()
         {
-            ViewData["Text"] = "ViewData";
+            ViewData["Text"] = "ViewData";  //弱型別
             return View();
         }
 
@@ -37,9 +38,16 @@ namespace MVC5Course.Controllers
 
         public ActionResult SaveTempData()
         {
-            TempData["Text"] = "TempData";
+            Client C = new Client();
+            C.City = "桃園市";
+            TempData["Text"] = C;
             return Redirect("TempDataDemo");
         }
         #endregion
+
+        public ActionResult MBinding(string id)
+        {
+            return Content(id);
+        }
     }
 }

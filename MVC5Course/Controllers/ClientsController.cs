@@ -87,16 +87,18 @@ namespace MVC5Course.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Client client = repo.Find(id.Value);
-            ClientsViewModel View_Client = new ClientsViewModel();
-            View_Client.InjectFrom(client);
+            //ClientsViewModel View_Client = new ClientsViewModel();
+            //View_Client.InjectFrom(client);
 
             if (client == null)
             {
                 return HttpNotFound();
             }
 
+
+
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
-            return View(View_Client);
+            return View(client);
         }
 
         // POST: Clients/Edit/5
@@ -114,9 +116,13 @@ namespace MVC5Course.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //ModelState.Remove("Latitude");
+
+            Client C = repo.Find(client.ClientId);
+            
 
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
-            return View(client);
+            return View(C);
         }
 
         // GET: Clients/Delete/5

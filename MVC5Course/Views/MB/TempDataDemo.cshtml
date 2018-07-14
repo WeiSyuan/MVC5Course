@@ -1,7 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "TempDataDemo";
+    var data = TempData["Text"] as MVC5Course.Models.Client;
 }
 
 <h2>TempDataDemo</h2>
-<pre>@TempData["Text"]</pre>
+<pre>@data.City</pre>
