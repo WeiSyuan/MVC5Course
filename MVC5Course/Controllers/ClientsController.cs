@@ -31,6 +31,7 @@ namespace MVC5Course.Controllers
             return View("Index", client);
         }
 
+
         [HttpPost]
         [Route("BatchUpdate")]
         [HandleError(ExceptionType =typeof(DbEntityValidationException),View = "Error_DbEntityValidationException")]
@@ -118,7 +119,7 @@ namespace MVC5Course.Controllers
             ViewBag.OccupationId = new SelectList(occuRepo.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
-
+        //[ActionFilter練習]
         // GET: Clients/Edit/5
         public ActionResult Edit(int? id)
         {
