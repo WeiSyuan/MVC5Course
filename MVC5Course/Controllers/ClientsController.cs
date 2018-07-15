@@ -34,8 +34,8 @@ namespace MVC5Course.Controllers
 
         [HttpPost]
         [Route("BatchUpdate")]
-        [HandleError(ExceptionType =typeof(DbEntityValidationException),View = "Error_DbEntityValidationException")]
-        public ActionResult BatchUpdate(IList<ClientBatchViewModel> data,string keyword)
+        [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
+        public ActionResult BatchUpdate(IList<ClientBatchViewModel> data, string keyword)
         {
             if (ModelState.IsValid)
             {
@@ -78,6 +78,7 @@ namespace MVC5Course.Controllers
 
 
 
+        [Route("{id}/Details")]
 
         // GET: Clients/Details/5
         public ActionResult Details(int? id)
@@ -92,6 +93,15 @@ namespace MVC5Course.Controllers
                 return HttpNotFound();
             }
             return View(client);
+        }
+
+        [Route("{id}/orders")]
+        [ChildActionOnly]
+
+        public ActionResult Details_OrderList(int id)
+        {
+            ViewData.Model = repo.Find(id).Order.ToList();
+            return PartialView();
         }
 
         // GET: Clients/Create
@@ -142,16 +152,19 @@ namespace MVC5Course.Controllers
             return View(client);
         }
 
+
+
+
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id,FormCollection form)
+        public ActionResult Edit(int id, FormCollection form)
         {
             var client = repo.Find(id);
-            if (TryUpdateModel(client,null,null,new string[] { "FirstName"}))
+            if (TryUpdateModel(client, null, null, new string[] { "FirstName" }))
             {
                 //var db = repo.UnitOfWork.Context;
                 //db.Entry(client).State = EntityState.Modified;

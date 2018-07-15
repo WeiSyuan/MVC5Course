@@ -1,7 +1,31 @@
-﻿@{
+﻿@using MVC5Course.Helpers
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<ul>
+    @ViewContext.RouteData.Values["controller"]
+</ul>
+<ul>
+    @ViewContext.RouteData.Values["action"]
+</ul>
+<ul>
+    @ViewContext.Controller.ValueProvider
+</ul>
+@*@ViewData.ModelState["id"].Value.AttemptedValue*@     @*取得modelState值*@
+
+@Model
+@ViewData.ModelState["id"].Value.AttemptedValue
+@{ var routeValues = ViewContext.RouteData.Values; }
+@routeValues["id"].ToString()
+@HttpContext.Current.Items
+
+
+@ViewContext.ViewData.Model
+@ViewContext.ViewData.ModelState["id"].Value.AttemptedValue
+@ViewContext.RouteData.Values["action"].ToString()
+@ViewContext.HttpContext.Items

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RazorTestController.cs" />
+    <Compile Include="Controllers\RazorUtility.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -491,7 +492,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -519,9 +522,10 @@
     <Content Include="Views\MB\TempDataDemo.cshtml" />
     <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
     <Content Include="Views\RazorTest\Index.cshtml" />
-    <Content Include="Views\RazorTest\_ViewStart.cshtml" />
     <Content Include="Views\RazorTest\layout_test.cshtml" />
     <Content Include="Views\RazorTest\DashBoard.cshtml" />
+    <Content Include="Views\RazorTest\_ViewLayoutTest.cshtml" />
+    <Content Include="Views\Clients\Details_OrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
