@@ -1,0 +1,53 @@
+﻿
+@{
+    var items = new int[] { 1, 2, 3, 4, 5 };
+}
+
+
+@foreach (var item in items)
+{
+    @item
+}
+
+@foreach (var item in items)
+{
+    @item@(" ")
+}
+
+
+<ul>
+@foreach (var item in items)
+{
+  <li>@item</li>
+}
+</ul>
+
+
+@*@{
+        ViewBag.Title = "Index";
+    }
+
+    <ul>
+        @for (int i = 1; i < 10; i++)
+        {
+            <li>@i</li>
+        }
+    </ul>
+
+    <a href="mailto:wei_syuan@itri.org.tw">wei_syuan@itri.org.tw</a>
+    @{
+
+        <blockquote>hello world</blockquote> string aa = "1";
+
+    }
+
+
+    @{
+        ViewBag.Description = "<span style='font-weight: bold;'>描述文字</span>";
+    }
+
+
+    @Html.Raw(ViewBag.Description)*@
+
+
+
