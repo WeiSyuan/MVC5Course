@@ -11,7 +11,6 @@ using Omu.ValueInjecter;
 using X.PagedList;
 
 
-
 namespace MVC5Course.Controllers
 {
     public class ProductsController : BaseController
@@ -21,7 +20,8 @@ namespace MVC5Course.Controllers
         // GET: Products
         public ActionResult Index(int pageNo=1)
         {
-            var data = db.Product.OrderByDescending(p => p.ProductId).ToPagedList(pageNumber:pageNo,pageSize:10);
+            var data = db.Product.OrderByDescending(p => p.ProductId).ToPagedList(pageNumber:pageNo,pageSize:50);
+
             return View(data);
         }
 

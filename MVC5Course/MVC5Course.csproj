@@ -168,6 +168,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
+    <Compile Include="Areas\Area\Controllers\HomeController.cs" />
     <Compile Include="Controllers\ActionFilter練習Attribute.cs" />
     <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -488,6 +490,10 @@
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.eot" />
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.ttf" />
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.woff" />
+    <Content Include="Areas\Area\Views\web.config" />
+    <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Area\Views\Home\Index.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -546,6 +552,7 @@
     <Content Include="Views\Clients\Details_OrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Area\Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
