@@ -17,7 +17,12 @@
 {
     @Html.TextBox("keyword", null, new { placeholder = "請輸入欲搜尋之關鍵字" })
     <input type="submit" value="搜尋" class="btn btn-default" />
+    @Html.DropDownList("CreditRating", null, "--請選擇評價等級--", new { @class = "form-control" })
+
+    
 }
+
+
 
 @using (Html.BeginForm("BatchUpdate", "clients"))
 {

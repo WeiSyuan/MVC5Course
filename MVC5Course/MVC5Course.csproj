@@ -383,8 +383,17 @@
     <Content Include="Bootstrap\img\uploadify-cancel.png" />
     <Content Include="Bootstrap\index.html" />
     <Content Include="Bootstrap\js\bootstrap.js" />
-    <Content Include="Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Bootstrap\js\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Bootstrap\js\bundle.js" />
+    <Content Include="Bootstrap\js\bundle.min.js">
+      <DependentUpon>bundle.js</DependentUpon>
+    </Content>
     <Content Include="Bootstrap\js\counter.js" />
+    <Content Include="Bootstrap\js\counter.min.js">
+      <DependentUpon>counter.js</DependentUpon>
+    </Content>
     <Content Include="Bootstrap\js\custom.js" />
     <Content Include="Bootstrap\js\excanvas.js" />
     <Content Include="Bootstrap\js\fullcalendar.min.js" />
@@ -473,12 +482,15 @@
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.eot" />
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.ttf" />
     <Content Include="Bootstrap\font\glyphiconshalflings-regular.woff" />
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -580,7 +592,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
   </Target>
+  <Import Project="..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

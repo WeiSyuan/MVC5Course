@@ -12,7 +12,8 @@ namespace MVC5Course.Models
             {
                 return base.All();
             }
-            return base.All().Where(p => p.CreditRating < 2 && p.IsDelete==false);
+            //return base.All().Where(p => p.CreditRating < 2 && p.IsDelete==false);
+            return base.All().Where(p =>  p.IsDelete == false);
         }
         public Client Find(int id)
         {

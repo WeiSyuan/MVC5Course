@@ -18,6 +18,8 @@ namespace MVC5Course.Controllers
         ClientRepository repo;
         OccupationRepository occuRepo;
 
+        FabricsEntities db = new FabricsEntities();
+
         public ClientsController()
         {
             repo = RepositoryHelper.GetClientRepository();
@@ -25,7 +27,8 @@ namespace MVC5Course.Controllers
         }
         [Route("Search")]
         [HttpPost]
-        public ActionResult Search(string keyword)
+        [Rating下拉式選單]
+        public ActionResult Search(string keyword, string CreditRating)
         {
             var client = repo.Search(keyword);
             return View("Index", client);
@@ -70,6 +73,7 @@ namespace MVC5Course.Controllers
 
 
         // GET: Clients
+        [Rating下拉式選單]
         public ActionResult Index()
         {
             var data = repo.All();

@@ -7,10 +7,12 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())*@
+@using (Ajax.BeginForm(new AjaxOptions() { UpdateTargetId="details"}))
+
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />

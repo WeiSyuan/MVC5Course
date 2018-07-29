@@ -197,7 +197,15 @@ namespace MVC5Course.Controllers
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Request.IsAjaxRequest())
+                {
+                    return new EmptyResult();
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+
             }
             return View(product);
         }

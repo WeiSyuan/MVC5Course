@@ -1,0 +1,9 @@
+[
+  {
+    "outputFileName": "Bootstrap/js/bundle.js",
+    "inputFiles": [
+      "Bootstrap/js/custom.js",
+      "Bootstrap/js/excanvas.js"
+    ]
+  }
+]
